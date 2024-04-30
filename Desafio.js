@@ -1,6 +1,22 @@
-let vitorias = 70
-let derrotas = 2
+let vitorias
+let derrotas
 let saldoVitorias
+let nivel
+
+const readline = require('readline')
+
+leitor = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+async function receberInput(msg) {
+    return new Promise((resolve) => {
+        this.leitor.question(msg, (response) => {
+            resolve(response);
+        });
+    });
+}
 
 function calcularRank(vitorias, derrotas) {
     saldoVitorias = vitorias - derrotas
@@ -23,7 +39,13 @@ function calcularRank(vitorias, derrotas) {
     
 }
 
+receberInput('Quantas vitórias?').then( (vitorias) => {
+    receberInput('Quantas derrotas?').then( (derrotas) => {
+        leitor.close();
+        nivel = calcularRank(vitorias, derrotas)
+        console.log(`O herói tem de saldo de ${saldoVitorias} está no nível de ${nivel}`)
+    })
+})
 
-let nivel = calcularRank(vitorias, derrotas)
 
-console.log(`O herói tem de saldo de ${saldoVitorias} está no nível de ${nivel}`)
+
